@@ -1,5 +1,6 @@
 package com.scalaTest.berlinClock.utility
 
+import com.scalaTest.berlinClock.exceptions.HourOutOfBoundsException
 import com.scalaTest.berlinClock.models.{BerlinClock, HourLights, MinuteLights, SecondLight}
 
 trait BerlinClockHelperImpl extends BerlinClockHelper{
@@ -20,6 +21,9 @@ trait BerlinClockHelperImpl extends BerlinClockHelper{
     }
 
     def getHourLights(hour: Int): HourLights = {
+      if(hour < 0 || hour > 23)
+        throw new HourOutOfBoundsException
+
       HourLights(
         top = hour / 5,
         bottom = hour % 5

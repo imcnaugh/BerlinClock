@@ -1,5 +1,6 @@
 package com.scalaTest.berlinClock
 
+import com.scalaTest.berlinClock.exceptions.HourOutOfBoundsException
 import com.scalaTest.berlinClock.utility.BerlinClockHelperImpl
 import org.scalatest.{FunSpec, Matchers}
 
@@ -19,11 +20,11 @@ class BerlinClockHelperImplTest extends FunSpec with Matchers {
       lights.bottom should equal(0)
     }
 
-    it("should return all lights for hour 24") {
-      val lights = target.berlinClockHelper.getHourLights(24)
+    it("should return correct lights for hour 23") {
+      val lights = target.berlinClockHelper.getHourLights(23)
 
       lights.top should equal(4)
-      lights.bottom should equal(4)
+      lights.bottom should equal(3)
     }
 
     it("should return 3 lights on top for hour 15"){
@@ -39,10 +40,23 @@ class BerlinClockHelperImplTest extends FunSpec with Matchers {
       lights.top should equal (0)
       lights.bottom should equal (3)
     }
+
+    it("should throw error if a negetive hour is given"){
+      an [HourOutOfBoundsException] should be thrownBy target.berlinClockHelper.getHourLights(-5)
+    }
+
+    it("should throw error if hour over 24 is given"){
+      an [HourOutOfBoundsException] should be thrownBy target.berlinClockHelper.getHourLights(24)
+    }
   }
 
   describe("Minitue Light Tests"){
+    it("should return no lights for minitue 0"){
+      val lights = target.berlinClockHelper.getMinitueLights(0)
 
+      lights.top should equal (0)
+      lights.bottom should equal (0)
+    }
   }
 
 }
