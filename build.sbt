@@ -1,6 +1,8 @@
-name := "BerlinClock"
 
-version := "1.0"
+lazy val berlinClockDeps = Seq(
+  "org.scalatest" %% "scalatest" % "3.0.0" % "test",
+  "org.mockito" % "mockito-core" % "1.10.19" % "test"
+)
 
-scalaVersion := "2.12.1"
-    
+libraryDependencies ++= berlinClockDeps
+
