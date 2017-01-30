@@ -1,6 +1,6 @@
 package com.scalaTest.berlinClock
 
-import com.scalaTest.berlinClock.exceptions.{MinuteOutOfBoundsException, HourOutOfBoundsException}
+import com.scalaTest.berlinClock.exceptions.{SecondOutOfBoundsException, MinuteOutOfBoundsException, HourOutOfBoundsException}
 import com.scalaTest.berlinClock.utility.BerlinClockHelperImpl
 import org.scalatest.{FunSpec, Matchers}
 
@@ -33,10 +33,10 @@ class BerlinClockHelperImplTest extends FunSpec with Matchers {
       lights.top should equal (0)
       lights.bottom should equal (3)
     }
-    it("should throw error if a negetive hour is given"){
+    it("should throw exception if a negetive hour is given"){
       an [HourOutOfBoundsException] should be thrownBy target.berlinClockHelper.getHourLights(-5)
     }
-    it("should throw error if hour over 24 is given"){
+    it("should throw exception if hour over 24 is given"){
       an [HourOutOfBoundsException] should be thrownBy target.berlinClockHelper.getHourLights(24)
     }
   }
@@ -67,11 +67,28 @@ class BerlinClockHelperImplTest extends FunSpec with Matchers {
       lights.top should equal (6)
       lights.bottom should equal (3)
     }
-    it("should throw an error if negetive minitues are given"){
+    it("should throw an exception if negetive minitues are given"){
       an [MinuteOutOfBoundsException] should be thrownBy target.berlinClockHelper.getMinitueLights(-1)
     }
-    it("should throw an error if minitue over 59 is given"){
+    it("should throw an exception if minitue over 59 is given"){
       an [MinuteOutOfBoundsException] should be thrownBy target.berlinClockHelper.getMinitueLights(60)
+    }
+  }
+
+  describe("Second light tests"){
+    it("should return true when second is even"){
+      val light = target.berlinClockHelper.getSecondLight(2)
+      light.isSecondEven should equal (true)
+    }
+    it("should return false when second is odd"){
+      val light = target.berlinClockHelper.getSecondLight(55)
+      light.isSecondEven should be (false)
+    }
+    it("should throw an exception if negetive second is given"){
+      an [SecondOutOfBoundsException] should be thrownBy target.berlinClockHelper.getSecondLight(-1)
+    }
+    it("should throw an exception if second over 59 is given"){
+      an [SecondOutOfBoundsException] should be thrownBy target.berlinClockHelper.getSecondLight(60)
     }
   }
 }

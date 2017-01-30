@@ -1,6 +1,6 @@
 package com.scalaTest.berlinClock.utility
 
-import com.scalaTest.berlinClock.exceptions.{MinuteOutOfBoundsException, HourOutOfBoundsException}
+import com.scalaTest.berlinClock.exceptions.{SecondOutOfBoundsException, MinuteOutOfBoundsException, HourOutOfBoundsException}
 import com.scalaTest.berlinClock.models.{BerlinClock, HourLights, MinuteLights, SecondLight}
 
 trait BerlinClockHelperImpl extends BerlinClockHelper{
@@ -41,6 +41,9 @@ trait BerlinClockHelperImpl extends BerlinClockHelper{
     }
 
     def getSecondLight(second: Int): SecondLight = {
+      if(second < 0 || second > 59)
+        throw new SecondOutOfBoundsException
+
       SecondLight(
         isSecondEven = second % 2 == 0
       )
