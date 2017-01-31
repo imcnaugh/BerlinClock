@@ -11,7 +11,7 @@ trait BerlinClockHelper {
     def getBerlinClockLights(hour: Int = 0, minitue: Int = 0, second: Int = 0): BerlinClock
     def getBerlinClockLights(time: LocalTime): BerlinClock
     def getHourLights(hour: Int): HourLights
-    def getMinitueLights(minitue: Int): MinuteLights
+    def getMinuteLights(minute: Int): MinuteLights
     def getSecondLight(second: Int): SecondLight
   }
 

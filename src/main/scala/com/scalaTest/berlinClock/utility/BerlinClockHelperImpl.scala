@@ -14,7 +14,7 @@ trait BerlinClockHelperImpl extends BerlinClockHelper {
                              second: Int): BerlinClock = {
       BerlinClock(
         hourLights = getHourLights(hour),
-        minuteLights = getMinitueLights(minitue),
+        minuteLights = getMinuteLights(minitue),
         secondLight = getSecondLight(second)
       )
     }
@@ -22,7 +22,7 @@ trait BerlinClockHelperImpl extends BerlinClockHelper {
     def getBerlinClockLights(time: LocalTime): BerlinClock = {
       BerlinClock(
         hourLights = getHourLights(time.getHour),
-        minuteLights = getMinitueLights(time.getMinute),
+        minuteLights = getMinuteLights(time.getMinute),
         secondLight = getSecondLight(time.getSecond)
       )
     }
@@ -37,13 +37,13 @@ trait BerlinClockHelperImpl extends BerlinClockHelper {
       )
     }
 
-    def getMinitueLights(minitue: Int): MinuteLights = {
-      if (minitue < 0 || minitue > 59)
+    def getMinuteLights(minute: Int): MinuteLights = {
+      if (minute < 0 || minute > 59)
         throw new MinuteOutOfBoundsException
 
       MinuteLights(
-        top = minitue / 5,
-        bottom = minitue % 5
+        top = minute / 5,
+        bottom = minute % 5
       )
     }
 

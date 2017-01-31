@@ -102,7 +102,7 @@ class BerlinClockWriterImplTest extends FunSpec with Matchers {
   describe("Minute top lights test"){
     it("Should return all dim lights when top minute is 0"){
       val minuteLights = MinuteLights(top = 0, bottom = 0)
-      val s = target.berlinClockWriter.getMinituesTopString(minuteLights)
+      val s = target.berlinClockWriter.getMinutesTopString(minuteLights)
       s should equal (yellow + dimLight + dimLight +
         red + dimLight +
         yellow + dimLight+ dimLight +
@@ -113,7 +113,7 @@ class BerlinClockWriterImplTest extends FunSpec with Matchers {
     }
     it("Should return all lit lights when top minute is 11"){
       val minuteLights = MinuteLights(top = 11, bottom = 0)
-      val s = target.berlinClockWriter.getMinituesTopString(minuteLights)
+      val s = target.berlinClockWriter.getMinutesTopString(minuteLights)
       s should equal (yellow + litLight + litLight +
         red + litLight +
         yellow + litLight + litLight +
@@ -124,7 +124,7 @@ class BerlinClockWriterImplTest extends FunSpec with Matchers {
     }
     it("Should return 6 lit lights when top minute is 6"){
       val minuteLights = MinuteLights(top = 6, bottom = 0)
-      val s = target.berlinClockWriter.getMinituesTopString(minuteLights)
+      val s = target.berlinClockWriter.getMinutesTopString(minuteLights)
       s should equal (yellow + litLight + litLight +
         red + litLight +
         yellow + litLight + litLight +
@@ -138,7 +138,7 @@ class BerlinClockWriterImplTest extends FunSpec with Matchers {
   describe("Minute bottom lights test"){
     it("Should return all dim lights when bottom minute is 0"){
       val minuteLights = MinuteLights(top = 0, bottom = 0)
-      val s = target.berlinClockWriter.getMinituesBottomString(minuteLights)
+      val s = target.berlinClockWriter.getMinutesBottomString(minuteLights)
       s should equal (yellow + dimLight + dimLight + " " +
         dimLight + dimLight + " " +
         dimLight + dimLight + " " +
@@ -147,7 +147,7 @@ class BerlinClockWriterImplTest extends FunSpec with Matchers {
 
     it("Should return all lit lights when bottom minute is 4"){
       val minuteLights = MinuteLights(top = 0, bottom = 4)
-      val s = target.berlinClockWriter.getMinituesBottomString(minuteLights)
+      val s = target.berlinClockWriter.getMinutesBottomString(minuteLights)
       s should equal (yellow + litLight + litLight + " " +
         litLight + litLight + " " +
         litLight + litLight + " " +
@@ -156,7 +156,7 @@ class BerlinClockWriterImplTest extends FunSpec with Matchers {
 
     it("Should return 2 lit lights when bottom minute is 2"){
       val minuteLights = MinuteLights(top = 0, bottom = 2)
-      val s = target.berlinClockWriter.getMinituesBottomString(minuteLights)
+      val s = target.berlinClockWriter.getMinutesBottomString(minuteLights)
       s should equal (yellow + litLight + litLight + " " +
         litLight + litLight + " " +
         dimLight + dimLight + " " +

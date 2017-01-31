@@ -16,8 +16,8 @@ trait BerlinClockWriterImpl extends BerlinClockWriter {
       "|     " + getSecondsString(clock.secondLight) + "     |\n" +
       "|" + getHoursTopString(clock.hourLights) + "|\n" +
       "|" + getHoursBottomString(clock.hourLights) + "|\n" +
-      "|" + getMinituesTopString(clock.minuteLights) + "|\n" +
-      "|" + getMinituesBottomString(clock.minuteLights) + "|\n" +
+      "|" + getMinutesTopString(clock.minuteLights) + "|\n" +
+      "|" + getMinutesBottomString(clock.minuteLights) + "|\n" +
       "+-----------+"+
       Console.RESET
     }
@@ -56,7 +56,7 @@ trait BerlinClockWriterImpl extends BerlinClockWriter {
         Console.BLACK
     }
 
-    def getMinituesTopString(minuteLights: MinuteLights): String = {
+    def getMinutesTopString(minuteLights: MinuteLights): String = {
       Console.YELLOW +
         (if(minuteLights.top >= 1) litLight
         else dimLight) +
@@ -89,15 +89,15 @@ trait BerlinClockWriterImpl extends BerlinClockWriter {
       Console.BLACK
     }
 
-    def getMinituesBottomString(minituesLights: MinuteLights): String = {
+    def getMinutesBottomString(minutesLights: MinuteLights): String = {
       Console.YELLOW +
-        (if(minituesLights.bottom >= 1) litLight + litLight
+        (if(minutesLights.bottom >= 1) litLight + litLight
         else dimLight+ dimLight) + " " +
-        (if(minituesLights.bottom >= 2) litLight + litLight
+        (if(minutesLights.bottom >= 2) litLight + litLight
         else dimLight+ dimLight) + " " +
-        (if(minituesLights.bottom >= 3) litLight + litLight
+        (if(minutesLights.bottom >= 3) litLight + litLight
         else dimLight+ dimLight) + " " +
-        (if(minituesLights.bottom >= 4) litLight + litLight
+        (if(minutesLights.bottom >= 4) litLight + litLight
         else dimLight+ dimLight) +
         Console.BLACK
     }

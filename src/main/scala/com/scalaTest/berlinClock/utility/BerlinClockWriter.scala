@@ -10,8 +10,8 @@ trait BerlinClockWriter {
     def getSecondsString(secondLight: SecondLight): String
     def getHoursTopString(hourLights: HourLights): String
     def getHoursBottomString(hourLights: HourLights): String
-    def getMinituesTopString(minuteLights: MinuteLights): String
-    def getMinituesBottomString(minituesLights: MinuteLights): String
+    def getMinutesTopString(minuteLights: MinuteLights): String
+    def getMinutesBottomString(minutesLights: MinuteLights): String
   }
 
 }

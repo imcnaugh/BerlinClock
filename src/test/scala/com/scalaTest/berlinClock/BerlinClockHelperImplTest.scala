@@ -43,37 +43,37 @@ class BerlinClockHelperImplTest extends FunSpec with Matchers {
     }
   }
 
-  describe("Minitue Light Tests"){
-    it("should return no lights for minitue 0"){
-      val lights = target.berlinClockHelper.getMinitueLights(0)
+  describe("Minute Light Tests"){
+    it("should return no lights for minute 0"){
+      val lights = target.berlinClockHelper.getMinuteLights(0)
       lights.top should equal (0)
       lights.bottom should equal (0)
     }
-    it("should return all lights for minitue 59"){
-      val lights = target.berlinClockHelper.getMinitueLights(59)
+    it("should return all lights for minute 59"){
+      val lights = target.berlinClockHelper.getMinuteLights(59)
       lights.top should equal (11)
       lights.bottom should equal (4)
     }
-    it("should only return top lights for minitue 55"){
-      val lights = target.berlinClockHelper.getMinitueLights(55)
+    it("should only return top lights for minute 55"){
+      val lights = target.berlinClockHelper.getMinuteLights(55)
       lights.top should equal (11)
       lights.bottom should equal (0)
     }
-    it("should only return bottom lights for minitue 4"){
-      val lights = target.berlinClockHelper.getMinitueLights(4)
+    it("should only return bottom lights for minute 4"){
+      val lights = target.berlinClockHelper.getMinuteLights(4)
       lights.top should equal (0)
       lights.bottom should equal (4)
     }
-    it("should return proper lights for minitue 33"){
-      val lights = target.berlinClockHelper.getMinitueLights(33)
+    it("should return proper lights for minute 33"){
+      val lights = target.berlinClockHelper.getMinuteLights(33)
       lights.top should equal (6)
       lights.bottom should equal (3)
     }
-    it("should throw an exception if negetive minitues are given"){
-      an [MinuteOutOfBoundsException] should be thrownBy target.berlinClockHelper.getMinitueLights(-1)
+    it("should throw an exception if negetive minute are given"){
+      an [MinuteOutOfBoundsException] should be thrownBy target.berlinClockHelper.getMinuteLights(-1)
     }
-    it("should throw an exception if minitue over 59 is given"){
-      an [MinuteOutOfBoundsException] should be thrownBy target.berlinClockHelper.getMinitueLights(60)
+    it("should throw an exception if minute over 59 is given"){
+      an [MinuteOutOfBoundsException] should be thrownBy target.berlinClockHelper.getMinuteLights(60)
     }
   }
 
