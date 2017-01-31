@@ -6,3 +6,4 @@ lazy val berlinClockDeps = Seq(
 
 libraryDependencies ++= berlinClockDeps
 
+assemblyJarName in assembly := "berlinClock.jar"

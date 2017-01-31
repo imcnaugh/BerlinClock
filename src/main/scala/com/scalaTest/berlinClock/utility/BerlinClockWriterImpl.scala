@@ -11,13 +11,15 @@ trait BerlinClockWriterImpl extends BerlinClockWriter {
   class BerlinClockWriterImpl extends berlinClockWriter{
 
     def getStringForClock(clock: BerlinClock): String = {
+      Console.BLACK +
       "+-----------+\n"+
       "|     " + getSecondsString(clock.secondLight) + "     |\n" +
       "|" + getHoursTopString(clock.hourLights) + "|\n" +
       "|" + getHoursBottomString(clock.hourLights) + "|\n" +
       "|" + getMinituesTopString(clock.minuteLights) + "|\n" +
       "|" + getMinituesBottomString(clock.minuteLights) + "|\n" +
-      "+-----------+"
+      "+-----------+"+
+      Console.RESET
     }
 
     def getSecondsString(secondLight: SecondLight): String = {
