@@ -1,0 +1,12 @@
+This is the Berlin clock, scala test
+
+This is a scala project built using SBT in java 1.8 in the Intellij IDE
+
+This code will compile down to an executable jar by running 'sbt assembly'. The jar file will be located at target/scala-2.10/berlinClock.jar
+
+The Berlin clock program will ask you for 3 inputs, an hour, minute, and second. All of these inputs should be integers.
+Hour has a range from 0 to 23
+Minute and Second have a range of 0 to 59
+Or, if you like, you can type in 'now' (case sensitive) when asked for the Hour to use the current time.
+
+After the program has all the information it needs, it will display what the Berlin clock would look like at that given time.
