@@ -29,29 +29,33 @@ class BerlinClockMain{
   }
 
   private def createClockFromMinuteAndSecond(hourString: String): String ={
-    val hour = hourString.toInt
-    System.out.println("Minute: ")
-    val minute = Console.readInt()
-    System.out.println("Second: ")
-    val second = Console.readInt()
-
     try{
+      val hour = hourString.toInt
+      System.out.println("Minute: ")
+      val minute = Console.readInt()
+      System.out.println("Second: ")
+      val second = Console.readInt()
+
       val clock = berlinClockHelper.getBerlinClockLights(hour, minute,second)
 
       "For the time " + hour + ":" + minute + ":" + second + " the Berlin clock looks like this\n" +
         berlinClockWriter.getStringForClock(clock)
     }catch {
       case e: HourOutOfBoundsException => {
-        "Hour must be within the range 0-23"
+        "An exception has been thrown, Hour must be within the range 0-23"
       }
       case e: MinuteOutOfBoundsException => {
-        "Minute must be within range 0-59"
+        "An exception has been thrown, Minute must be within range 0-59"
       }
       case e: SecondOutOfBoundsException => {
-        "Second bust be within range 0-59"
+        "An exception has been thrown, Second bust be within range 0-59"
+      }
+      case e: NumberFormatException => {
+        "An exception has been thrown, Integers are the only valid input (with the exception of 'now' when asked for hours)"
       }
       case e: Exception => {
-        "an exception has occured, this should never happen"
+        "Something I am not ready to handle has happened, Logging this incedent and reporting it to the developers"
+        //TODO log exception,
       }
     }
   }
