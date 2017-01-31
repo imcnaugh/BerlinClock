@@ -1,23 +1,103 @@
 package com.scalaTest.berlinClock.utility
 
-import com.scalaTest.berlinClock.models.BerlinClock
+import com.scalaTest.berlinClock.models.{MinuteLights, HourLights, SecondLight, BerlinClock}
 
 trait BerlinClockWriterImpl extends BerlinClockWriter {
   val berlinClockWriter = new BerlinClockWriterImpl()
 
-  class BerlinClockWriterImpl{
+  val litLight = "\u25AE"
+  val dimLight = "\u25AF"
+
+  class BerlinClockWriterImpl extends berlinClockWriter{
+
     def getStringForClock(clock: BerlinClock): String = {
-      "+===========+\n"+
-      "|     " + getSecondsString(clock.secondLight.isSecondEven) + "     |"
+      "+-----------+\n"+
+      "|     " + getSecondsString(clock.secondLight) + "     |\n" +
+      "|" + getHoursTopString(clock.hourLights) + "|\n" +
+      "|" + getHoursBottomString(clock.hourLights) + "|\n" +
+      "|" + getMinituesTopString(clock.minuteLights) + "|\n" +
+      "|" + getMinituesBottomString(clock.minuteLights) + "|\n" +
+      "+-----------+"
     }
 
-    private def getSecondsString(isSecondsLit: Boolean): String = {
-      val color = if(isSecondsLit)
-        Console.YELLOW
+    def getSecondsString(secondLight: SecondLight): String = {
+      val light = if(secondLight.isSecondEven)
+        litLight
         else
-        Console.BLUE
+        dimLight
+      Console.YELLOW + light + Console.BLACK
+    }
 
-      color + "\u9724" + Console.BLACK
+    def getHoursTopString(hourLights: HourLights): String = {
+      Console.RED +
+        (if(hourLights.top >= 1) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(hourLights.top >= 2) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(hourLights.top >= 3) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(hourLights.top >= 4) litLight + litLight
+        else dimLight+ dimLight) +
+      Console.BLACK
+    }
+
+    def getHoursBottomString(hourLights: HourLights): String = {
+      Console.RED +
+        (if(hourLights.bottom >= 1) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(hourLights.bottom >= 2) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(hourLights.bottom >= 3) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(hourLights.bottom >= 4) litLight + litLight
+        else dimLight+ dimLight) +
+        Console.BLACK
+    }
+
+    def getMinituesTopString(minuteLights: MinuteLights): String = {
+      Console.YELLOW +
+        (if(minuteLights.top >= 1) litLight
+        else dimLight) +
+        (if(minuteLights.top >= 2) litLight
+        else dimLight) +
+      Console.RED +
+        (if(minuteLights.top >= 3) litLight
+        else dimLight) +
+      Console.YELLOW +
+        (if(minuteLights.top >= 4) litLight
+        else dimLight) +
+        (if(minuteLights.top >= 5) litLight
+        else dimLight) +
+      Console.RED +
+        (if(minuteLights.top >= 6) litLight
+        else dimLight) +
+      Console.YELLOW +
+        (if(minuteLights.top >= 7) litLight
+        else dimLight) +
+        (if(minuteLights.top >= 8) litLight
+        else dimLight) +
+      Console.RED +
+        (if(minuteLights.top >= 9) litLight
+        else dimLight) +
+      Console.YELLOW +
+        (if(minuteLights.top >= 10) litLight
+        else dimLight) +
+        (if(minuteLights.top >= 11) litLight
+        else dimLight) +
+      Console.BLACK
+    }
+
+    def getMinituesBottomString(minituesLights: MinuteLights): String = {
+      Console.YELLOW +
+        (if(minituesLights.bottom >= 1) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(minituesLights.bottom >= 2) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(minituesLights.bottom >= 3) litLight + litLight
+        else dimLight+ dimLight) + " " +
+        (if(minituesLights.bottom >= 4) litLight + litLight
+        else dimLight+ dimLight) +
+        Console.BLACK
     }
   }
 
