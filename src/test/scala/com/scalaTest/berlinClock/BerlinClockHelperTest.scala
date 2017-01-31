@@ -1,5 +1,7 @@
 package com.scalaTest.berlinClock
 
+import java.time.LocalTime
+
 import com.scalaTest.berlinClock.exceptions.{SecondOutOfBoundsException, MinuteOutOfBoundsException, HourOutOfBoundsException}
 import com.scalaTest.berlinClock.utility.BerlinClockHelperImpl
 import org.scalatest.{FunSpec, Matchers}
@@ -89,6 +91,38 @@ class BerlinClockHelperImplTest extends FunSpec with Matchers {
     }
     it("should throw an exception if second over 59 is given"){
       an [SecondOutOfBoundsException] should be thrownBy target.berlinClockHelper.getSecondLight(60)
+    }
+  }
+
+  describe("Get lights from local time tests"){
+    it("given the current local time, the correct lights should be returned"){
+      val currentTime = LocalTime.now()
+      val lights = target.berlinClockHelper.getBerlinClockLights(currentTime)
+
+      lights.hourLights.top should equal (currentTime.getHour / 5)
+      lights.hourLights.bottom should equal (currentTime.getHour % 5)
+      lights.minuteLights.top should equal (currentTime.getMinute / 5)
+      lights.minuteLights.bottom should equal (currentTime.getMinute % 5)
+      lights.secondLight.isSecondEven should equal (currentTime.getSecond % 2 == 0)
+    }
+  }
+
+  describe("Get lights from hours, mins, and seconds tests"){
+    it("given 7, 34, 1 the lights proper lights are returned") {
+      val lights = target.berlinClockHelper.getBerlinClockLights(7, 34, 1)
+      lights.hourLights.top should equal (1)
+      lights.hourLights.bottom should equal (2)
+      lights.minuteLights.top should equal (6)
+      lights.minuteLights.bottom should equal (4)
+      lights.secondLight.isSecondEven should equal (false)
+    }
+    it("given nothing, the default values should assume 00:00:00"){
+      val lights = target.berlinClockHelper.getBerlinClockLights()
+      lights.hourLights.top should equal (0)
+      lights.hourLights.bottom should equal (0)
+      lights.minuteLights.top should equal (0)
+      lights.minuteLights.bottom should equal (0)
+      lights.secondLight.isSecondEven should equal (true)
     }
   }
 }

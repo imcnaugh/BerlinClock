@@ -1,18 +1,17 @@
 package com.scalaTest.berlinClock.utility
 
-import com.scalaTest.berlinClock.exceptions.{SecondOutOfBoundsException, MinuteOutOfBoundsException, HourOutOfBoundsException}
+import java.time.LocalTime
+
+import com.scalaTest.berlinClock.exceptions.{HourOutOfBoundsException, MinuteOutOfBoundsException, SecondOutOfBoundsException}
 import com.scalaTest.berlinClock.models.{BerlinClock, HourLights, MinuteLights, SecondLight}
 
-trait BerlinClockHelperImpl extends BerlinClockHelper{
+trait BerlinClockHelperImpl extends BerlinClockHelper {
   val berlinClockHelper = new BerlinClockHelperImpl()
 
-  class BerlinClockHelperImpl extends berlinClockHelper{
-    def getBerlinClockLights(time: String): BerlinClock = {
-      val hour = 1 // parse hour
-      val minitue = 1 //parse minitue
-      val second = 1 // parse second
-
-
+  class BerlinClockHelperImpl extends berlinClockHelper {
+    def getBerlinClockLights(hour: Int,
+                             minitue: Int,
+                             second: Int): BerlinClock = {
       BerlinClock(
         hourLights = getHourLights(hour),
         minuteLights = getMinitueLights(minitue),
@@ -20,8 +19,16 @@ trait BerlinClockHelperImpl extends BerlinClockHelper{
       )
     }
 
+    def getBerlinClockLights(time: LocalTime): BerlinClock = {
+      BerlinClock(
+        hourLights = getHourLights(time.getHour),
+        minuteLights = getMinitueLights(time.getMinute),
+        secondLight = getSecondLight(time.getSecond)
+      )
+    }
+
     def getHourLights(hour: Int): HourLights = {
-      if(hour < 0 || hour > 23)
+      if (hour < 0 || hour > 23)
         throw new HourOutOfBoundsException
 
       HourLights(
@@ -31,7 +38,7 @@ trait BerlinClockHelperImpl extends BerlinClockHelper{
     }
 
     def getMinitueLights(minitue: Int): MinuteLights = {
-      if(minitue < 0 || minitue > 59)
+      if (minitue < 0 || minitue > 59)
         throw new MinuteOutOfBoundsException
 
       MinuteLights(
@@ -41,7 +48,7 @@ trait BerlinClockHelperImpl extends BerlinClockHelper{
     }
 
     def getSecondLight(second: Int): SecondLight = {
-      if(second < 0 || second > 59)
+      if (second < 0 || second > 59)
         throw new SecondOutOfBoundsException
 
       SecondLight(
@@ -49,4 +56,5 @@ trait BerlinClockHelperImpl extends BerlinClockHelper{
       )
     }
   }
+
 }
