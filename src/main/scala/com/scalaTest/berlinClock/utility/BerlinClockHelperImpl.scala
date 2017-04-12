@@ -6,7 +6,7 @@ import com.scalaTest.berlinClock.exceptions.{HourOutOfBoundsException, MinuteOut
 import com.scalaTest.berlinClock.models.{BerlinClock, HourLights, MinuteLights, SecondLight}
 
 trait BerlinClockHelperImpl extends BerlinClockHelper {
-  val berlinClockHelper = new BerlinClockHelperImpl()
+  override val berlinClockHelper = new BerlinClockHelperImpl()
 
   class BerlinClockHelperImpl extends berlinClockHelper {
     def getBerlinClockLights(hour: Int,
